@@ -2,20 +2,20 @@ package tests.ag;
 
 import java.util.List;
 
-import ejercicio1.Cromosoma1;
+import ejercicio2.Cromosoma2;
 
 import us.lsi.ag.agchromosomes.AlgoritmoAG;
 import us.lsi.ag.agstopping.StoppingConditionFactory;
 
-public class TestsE1 {
+public class TestsE2 {
 
 	public static void main(String[] args) {
-		AlgoritmoAG.POPULATION_SIZE = 100000; //Aumentar si no obtiene res optimo
-		StoppingConditionFactory.NUM_GENERATIONS = 10000000; // El doble de tiempo para pensar. aumentar si no optimo
+		AlgoritmoAG.POPULATION_SIZE = 1000000; //Aumentar si no obtiene res optimo
+		StoppingConditionFactory.NUM_GENERATIONS = 100000000; // El doble de tiempo para pensar. aumentar si no optimo
 		
 		
 		List.of(1,2,3).forEach(i -> { // indique los tests a realizar
-			var cr = new Cromosoma1("datos_entrada/ejercicio1/DatosEntrada"+i+".txt");
+			var cr = new Cromosoma2("datos_entrada/ejercicio2/DatosEntrada"+i+".txt");
 			var ag = AlgoritmoAG.of(cr);
 			ag.ejecuta();
 			

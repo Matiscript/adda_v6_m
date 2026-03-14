@@ -1,0 +1,35 @@
+head section
+// Incluir los metodos necesarios, entre ellos:
+Integer getNumComponentes()
+Integer getNumProductos()
+Integer getTiempoProdTotal()
+Integer getTiempoElabTotal()
+
+Double getPrecioProd(Integer i)
+Integer getTiempoProdComp(Integer j)
+Integer getTiempoElabComp(Integer j)
+Integer getUnidsSemanaProd(Integer i)
+Integer getTiempoProduccCompProd(Integer i, Integer j)
+Integer getTiempoElabCompProd(Integer i, Integer j)
+
+// ... con Integer y demas
+// Definir las constantes necesarias con algunos metodos anteriores, entre ellas:
+Integer n = getNumProductos()
+Integer m = getNumComponentes()
+Integer A = getTiempoProdTotal()
+Integer B = getTiempoElabTotal()
+
+goal section
+// decidir MAX/MIN y expresar como funcion lineal
+max sum(getPrecioProd(i) x[i], i in 0 .. n)
+
+constraints section
+// Seguir las restricciones del modelo y expresar como f. lineal
+
+
+sum(getTiempoProduccCompProd(i, j) x[i], i in 0 .. n, j in 0 .. m ) <= A
+sum(getTiempoElabCompProd(i, j) x[i] , i in 0 .. n, j in 0 .. m ) <= B
+x[i] <= getUnidsSemanaProd(i), i in 0 .. n
+
+int
+x[i], i in 0 .. n

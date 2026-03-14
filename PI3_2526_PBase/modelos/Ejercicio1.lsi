@@ -3,10 +3,10 @@ head section
 Integer getNumCandidatos()
 Integer getNumCualidades()
 Integer getPresupuestoMax()
-Integer getValoracion(i)
-Boolean getTieneCualidad(i,j)
-Boolean getSonIncompatibles(i,k)
-Double getSueldoMin(i)
+Integer getValoracion(Integer i)
+Boolean getTieneCualidad(Integer i,Integer j)
+Boolean getSonIncompatibles(Integer i,Integer k)
+Double getSueldoMin(Integer i)
 // ...
 // Definir las constantes necesarias con algunos metodos anteriores, entre ellas:
 Integer n = getNumCandidatos()
@@ -21,8 +21,8 @@ max sum(getValoracion(i) x[i], i in 0 .. n)
 
 constraints section
 // Seguir las restricciones del modelo y expresar como f. lineal
-sum(getTieneCualidad(i,j) x[i], i in 0 .. n) >= 1, j in 0 .. m
-x[i]+x[k] <= 1, i in 0 .. n, k in 0 .. n | i<k, getSonIncompatibles(i,k) == 1
+sum(x[i], i in 0 .. n |getTieneCualidad(i,j)) >= 1, j in 0 .. m
+x[i]+x[k] <= 1, i in 0 .. n, k in 0 .. n | i<k && getSonIncompatibles(i,k)
 sum(getSueldoMin(i) x[i], i in 0 .. n) <= S
 
 bin
