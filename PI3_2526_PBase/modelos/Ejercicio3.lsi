@@ -1,0 +1,30 @@
+head section
+// Incluir los metodos necesarios, entre ellos:
+Integer getNumElementos()
+Integer getNumContenedores()
+Integer getTamElemento(Integer i)
+Integer getTamContenedor(Integer j)
+
+Boolean getNoPuedeUbicarse(Integer i, Integer j)
+// ... con Integer y demas
+// Definir las constantes necesarias con algunos metodos anteriores, entre ellas:
+Integer n = getNumElementos()
+Integer m = getNumContenedores()
+
+goal section
+// decidir MAX/MIN y expresar como funcion lineal
+
+max sum(y[j], j in 0 .. m)
+
+constraints section
+// Seguir las restricciones del modelo y expresar como f. lineal
+
+sum(getTamElemento(i) x[i,j], i in 0 .. n) <= getTamContenedor (j), j in 0 .. m
+sum(getTamElemento(i) x[i,j], i in 0 .. n) - getTamContenedor (j) y[j] >= 0  , j in 0 .. m
+sum(x[i,j], j in 0 .. m) <= 1, i in 0 .. n
+x[i,j] = 0, i in 0 .. n, j in 0 .. m | getNoPuedeUbicarse(i,j)
+
+//variables binarias
+bin
+x[i,j], i in 0 .. n, j in 0 .. m
+y[j], j in 0 .. m
