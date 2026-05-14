@@ -9,8 +9,10 @@ import us.lsi.graphs.virtual.VirtualVertex;
 
 //Uso el segundo modelo
 public record AlumnosVertex(Integer index, List<Integer> remaining) 
-  implements VirtualVertex<AlumnosVertex,AlumnosEdge,Integer> {
+  implements VirtualVertex<AlumnosVertex,AlumnosEdge,Integer> { //implementa VirtualVertex, 
+																//con el tipo de vertice, arista y accion
 
+	//este tenemos que hacerlo, la mayoria de funciones se pueden generar a partir de este constructor
 	public static AlumnosVertex initial() {
 		return of(0, List2.nCopies(DatosAlumnos.getTamGrupo(), DatosAlumnos.getNumGrupos()));
 	}

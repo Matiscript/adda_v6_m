@@ -15,20 +15,22 @@ public record SubconjuntosHyperVertexI(Integer index, IntegerSet remaining)
 
 	public static SubconjuntosHyperVertex initial() {
 		return of(0, IntegerSet.of(DatosSubconjuntos.universo()));
-	}
+	} //inicial
 
 	public static SubconjuntosHyperVertex of(Integer i, IntegerSet rest) {
-		return new SubconjuntosHyperVertexI(i, rest);
+		return new SubconjuntosHyperVertexI(i, rest); //constructor
 	}
 
+	//pasarlo a graph
 	public String toGraph() {
 		return String.format("%s,%s)",DatosSubconjuntos.nombre(this.index),this.remaining().isEmpty()?"Y":"N");
 	}
 	
+	//es el mismo actions que en los grafos virtuales
 	public List<Integer> actions() {
 		List<Integer> r;
 		if ((index == DatosSubconjuntos.NUM_SC) || remaining.isEmpty()) r = List.of();
-		else if (this.index == DatosSubconjuntos.NUM_SC-1) {
+		else if (this.index == DatosSubconjuntos.NUM_SC-1) { //en el ultimo conjunto
 			if (DatosSubconjuntos.conjunto(index).containsAll(this.remaining)) r = List.of(1);
 			else r = List.of();
 		} else {
@@ -47,8 +49,11 @@ public record SubconjuntosHyperVertexI(Integer index, IntegerSet remaining)
 	@Override
 	public Boolean isBaseCase() {
 		return ((index >= DatosSubconjuntos.NUM_SC-1) || remaining.isEmpty());
-	}
+	}  //2 casos base para dos tipos de situaciones, si es el último elemento o si ya esta vacia
+	
 
+	//hay que determinar un peso para el caso base,
+	//porque empezamos desde abajo a arriba y hay que ir mirando sus pesos para elegir el camino
 	@Override
 	public Double baseCaseWeight() {
 		Double res = null;

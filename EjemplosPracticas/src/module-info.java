@@ -24,4 +24,5 @@ module ejemplospracticas {
 	requires transitive partecomun;
 	requires transitive solve;
 	requires transitive ejemplositerativosrecursivos;
+	requires pi4Base_2526;
 }

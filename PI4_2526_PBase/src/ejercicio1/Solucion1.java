@@ -5,15 +5,20 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.jgrapht.GraphPath;
+
 import ejercicio1.Datos1.Candidato;
 import us.lsi.common.List2;
 import us.lsi.common.Set2;
 
 public class Solucion1 {
 	
-	/* public static Solucion1 create(GraphPath<---, ---> gp) { Para A* y BT
-		TODO obtiene la lista de alternativas del camino y llama al otro factoria
-	}*/
+	public static Solucion1 create(GraphPath<CandidatosVertex, CandidatosEdge> graph) {
+		//Para A* y BT; obtiene la lista de alternativas del camino y llama al otro factoria
+		List<Integer> ls = graph.getEdgeList().stream().map(e->e.action()).toList();
+		Solucion1 res = create(ls);
+		return res;
+	}
 	
 	public static Solucion1 create(List<Integer> ls) {
 		return new Solucion1(ls);
@@ -40,7 +45,7 @@ public class Solucion1 {
 				seleccion.stream().filter(elem->cAct.incompatibilidades().contains(elem))
 				.forEach(elem -> incompatibilidades.add(
 						String.format("(%s,%s)", Datos1.getNombre(elem), cAct.nombre())));
-				
+			
 				seleccion.add(i);
 			}
 		}
