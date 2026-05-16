@@ -4,20 +4,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import ejercicio2.Datos2.Contenedor;
-import ejercicio2.Datos2.Elemento;
+import org.jgrapht.GraphPath;
+
+import ejercicio2.Datos2.*;
 import us.lsi.common.List2;
 import us.lsi.common.Map2;
 
+
 public class Solucion2 {
 	
-	/* public static Solucion2 create(GraphPath<---, ---> gp) { Para A* y BT
-		TODO obtiene la lista de alternativas del camino y llama al otro factoria
-	}*/
-	
-	public static Solucion2 create(List<Integer> ls) {
-		return new Solucion2(ls);
+	public static Solucion2 of(GraphPath<ContenedoresVertex, ContenedoresEdge> gp) {
+		List<Integer> ls = gp.getEdgeList().stream().map(e -> e.action()).toList();
+		Solucion2 res = of(ls);
+		return res;
 	}
+	
+	
+	public static Solucion2 of(List<Integer> acciones) { 
+		return new Solucion2(acciones); 
+		}
 
 	private Map<Contenedor, List<Elemento>> distribucion;
 
@@ -30,6 +35,7 @@ public class Solucion2 {
 			}
 		}
 	}
+	
 	
 	@Override
 	public String toString() {
@@ -46,5 +52,8 @@ public class Solucion2 {
 		+e.getValue().stream().map(d->d.nombre()).collect(Collectors.joining(",")))
 		.collect(Collectors.joining("\n", "Reparto obtenido:\n", "\n"));
 	}
+
+
+	
 	
 }
